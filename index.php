@@ -1,76 +1,61 @@
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>TÍTULO DO SITE</title>
+<title>relogio</title>
+
+<!-- script relogio -->
+
+<script>
+var clockid=new Array()
+var clockidoutside=new Array()
+var i_clock=-1
+var thistime= new Date()
+var hours=thistime.getHours()
+var minutes=thistime.getMinutes()
+var seconds=thistime.getSeconds()
+if (eval(hours) <10) {hours="0"+hours}
+if (eval(minutes) < 10) {minutes="0"+minutes}
+if (seconds < 10) {seconds="0"+seconds}
+var thistime = hours+":"+minutes+":"+seconds
+
+function writeclock() {
+    i_clock++
+    if (document.all || document.getElementById || document.layers) {
+  clockid[i_clock]="clock"+i_clock
+  document.write("<span id='"+clockid[i_clock]+"' style='position:relative'>"+thistime+"</span>")
+    }
+}
+
+function clockon() {
+    thistime= new Date()
+    hours=thistime.getHours()
+    minutes=thistime.getMinutes()
+    seconds=thistime.getSeconds()
+    if (eval(hours) <10) {hours="0"+hours}
+    if (eval(minutes) < 10) {minutes="0"+minutes}
+    if (seconds < 10) {seconds="0"+seconds}
+    thistime = hours+":"+minutes+":"+seconds
+    
+    if (document.all) {
+  for (i=0;i<=clockid.length-1;i++) {
+      var thisclock=eval(clockid[i])
+      thisclock.innerHTML=thistime
+  }
+    }
+
+    if (document.getElementById) {
+  for (i=0;i<=clockid.length-1;i++) {
+      document.getElementById(clockid[i]).innerHTML=thistime
+  }
+    }
+    var timer=setTimeout("clockon()",1000)
+}
+window.onload=clockon
+</SCRIPT>
+
+<!-- script relogio -->
+
 </head>
- <style>
-    body{
-      font-family: 'Titillium Web', sans-serif;
-      color: #666666;
-      text-align: left;
-      background-image: url(bkp/images.jpg);
-    }
-    .box{
-      background-color: #9fc5c7;
-      width: 800px;
-      margin: 10px auto;
-    }
-
-    .box1{
-      background-color: #c7b39f;
-      width: 800px;
-      margin: 10px auto;
-    }
-
-    #title {
-      font-size: 30px;
-      margin-top: 25px;
-    }
-    #descricao{
-      font-size: 18px;
-      margin: 15px auto;
-    }
-    #logo {
-      margin-top: 40px;
-      max-width: 365px;
-      height: auto;
-    }
-    #logo-task {
-      width: 75px;
-
-    }
-  </style>
 <body>
-  <div class="box">
-
-    <div id="title">
-<center>MENU:</center>
-</div>
-<div>
-<center>
-<a href="criar-db.php"><button>Criar Banco</button></a>
-<a href="criar-tabelas-fixa.php"><button>Criar Tabela</button></a>
-<a href="insert-postgres.php"><button>Inserir Dados</button></a>
-<a href="consultar.php"><button>Consultar Full</button></a>
-<a href="consultar-registro.php"><button>Consultar Codigo</button></a>
-<a href="deletar.php"><button>Deletar</button></a>
-</center>
-</div>
-
+<p><script>writeclock()</SCRIPT> </p>
 </body>
-
-<body>
-  <div class="box1">
-
-    <div id="title">
-<center>TESTE:</center>
-</div>
-<div>
-<a href="https://wipsites.com.br"><button>Meu Botão</button></a>
-
-</div>
-
-</body>
-
-
-</html
+</html>
